@@ -25,9 +25,14 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew assembleDebug
 
-    - name: Upload APK artifacts
-      run: |
-        for apk in $(find . -type f -name "*.apk"); do
-          echo "Uploading $apk"
-          actions/upload-artifact $apk
-        done
+    - name: Upload debug artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: app-debug.apk
+        path: ./app/build/outputs/apk/debug/app-debug.apk
+
+    - name: Upload release artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: app-release.apk
+        path: ./app/build/outputs/apk/release/app-release.apk
