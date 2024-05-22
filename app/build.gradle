@@ -56,18 +56,14 @@ android {
             excludes += ['META-INF/DEPENDENCIES', 'META-INF/LICENSE.txt', 'META-INF/NOTICE.txt']
         }
     }
-
-    Properties signingProperties = new Properties()
-    File signingPropertiesFile = file("../signing.properties")
-    boolean signingPropertiesExist = signingPropertiesFile.exists()
-    if (signingPropertiesExist) signingProperties.load(new FileInputStream(signingPropertiesFile))
-
-    signingConfigs {
-    }
-
+    
     buildTypes {
         debug {
             debuggable true
+            jniDebuggable false
+        }        
+        release {
+            debuggable false
             jniDebuggable false
         }
     }
